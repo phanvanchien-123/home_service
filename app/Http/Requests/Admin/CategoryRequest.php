@@ -26,6 +26,7 @@ class CategoryRequest extends FormRequest
 
     return [
         'name' => 'required|string|max:255',
+        'featured'=> 'required|boolean',
         'slug' => [
             'required',
             Rule::unique('service_categories')->ignore($this->route('slug'), 'slug'), // Ignore the current slug
@@ -43,6 +44,7 @@ class CategoryRequest extends FormRequest
             'image.image' => 'File phải là một ảnh hợp lệ.',
             'image.mimes' => 'Ảnh phải có định dạng jpeg, png, jpg, hoặc gif.',
             'image.max' => 'Ảnh không được lớn hơn 2 MB.',
+            'featured.required' => 'Tên danh mục là bắt buộc.',
         ];
     }
 }

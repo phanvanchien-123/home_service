@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminService_by_category;
 use App\Http\Controllers\Admin\AdminServiceCategory;
+use App\Http\Controllers\Admin\AdminSlide;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Client\DetailsServiceController;
 use App\Http\Controllers\Customer\HomeController;
@@ -60,6 +61,15 @@ Route::middleware('auth','authadmin')->group(function(){
             'edit' => 'admin.services.edit',
             'update' => 'admin.services.update',
             'destroy' => 'admin.services.destroy',
+        ]);
+        Route::resource('slides', AdminSlide::class)->names([
+            'index' => 'admin.slides.index',
+            'create' => 'admin.slides.create',
+            'store' => 'admin.slides.store',
+            'show' => 'admin.slides.show',
+            'edit' => 'admin.slides.edit',
+            'update' => 'admin.slides.update',
+            'destroy' => 'admin.slides.destroy',
         ]);
     });
 });

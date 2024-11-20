@@ -10,7 +10,7 @@ class ServiceCategory extends Model
     use HasFactory;
     protected $primaryKey ='id';
     protected $table = 'service_categories';
-    protected $fillable = ['name', 'slug', 'image'];
+    protected $fillable = ['name', 'slug', 'image','featured'];
     public function services(){
         return $this->hasMany(Service::class);
     }

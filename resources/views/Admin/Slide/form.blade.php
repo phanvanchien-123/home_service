@@ -1,47 +1,36 @@
 
 <form class="form-horizontal" 
-action="{{ isset($category) ? route('update.service_categories', $category->slug) : route('store.service_categories') }}" 
+action="{{ isset($slides) ? route('admin.slides.update', $slides->id) : route('admin.slides.store') }}" 
 method="POST" 
 enctype="multipart/form-data">
 
 @csrf
-@if(isset($category))
+@if(isset($slides))
   @method('PUT') <!-- Use PUT method for updates -->
 @endif
 
 <div class="form-group">
-  <label for="name" class="control-label col-sm-3">Tên danh mục</label>
+  <label for="name" class="control-label col-sm-3">Tên Slide</label>
   <div class="col-sm-9">
-      <input type="text" class="form-control" name="name" id="name" 
-             value="{{ old('name', isset($category) ? $category->name : '') }}" >
-      @error('name')
+      <input type="text" class="form-control" name="title" id="name" 
+             value="{{ old('title', isset($slides) ? $slides->title : '') }}" >
+      @error('title')
           <span class="text-danger">{{ $message }}</span>
       @enderror
   </div>
 </div>
 
+
 <div class="form-group">
-  <label for="slug" class="control-label col-sm-3">Slug</label>
-  <div class="col-sm-9">
-      <input type="text" class="form-control" name="slug" id="slug" 
-             value="{{ old('slug', isset($category) ? $category->slug : '') }}" readonly >
-      @error('slug')
-          <span class="text-danger">{{ $message }}</span>
-      @enderror
-  </div>
-</div>
-<div class="form-group">
-    <label for="status" class="control-label col-sm-3">Nổi Bật</label>
+    <label for="status" class="control-label col-sm-3">Trạn Thái</label>
     <div class="col-sm-9">
-    <select name="featured" class="form-control" id="featured" style="width: 400px;">
-        <option value="">Hãy chọn có nổi bật có hoặc không</option>
-        <option value="1" {{ old('featured', isset($category) ? $category->featured : '') == '1' ? 'selected' : '' }}>Có</option>
-        <option value="0" {{ old('featured', isset($category) ? $category->featured : '') == '0' ? 'selected' : '' }}>Không</option>
-    </select>
-    
-    @error('featured')
-    <span class="text-danger">{{ $message }}</span>
-    @enderror
+        <select name="status" class="form-control" id="status" style="width: 400px;">
+            <option value="1" {{ old('status', isset($service) ? $service->status : '') == '1' ? 'selected' : '' }}>Kích hoạt</option>
+            <option value="0" {{ old('status', isset($service) ? $service->status : '') == '0' ? 'selected' : '' }}>Không kích hoạt</option>
+        </select>
+        @error('status')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
     </div>
 </div>
 
@@ -49,8 +38,8 @@ enctype="multipart/form-data">
   <label for="image" class="control-label col-sm-3">Ảnh Danh mục</label>
   <div class="col-sm-5">
       <input type="file" class="form-control-file" name="image" id="image" accept="image/*" onchange="previewImage(event)">
-      <img id="imagePreview" src="{{ isset($category) && $category->image ? asset('images/categories/' . $category->image) : '#' }}" alt="" width="60%" 
-           style="display: {{ isset($category) && $category->image ? 'block' : 'none' }};" />
+      <img id="imagePreview" src="{{ isset($slides) && $slides->image ? asset('images/slides/' . $slides->image) : '#' }}" alt="" width="60%" 
+           style="display: {{ isset($slides) && $slides->image ? 'block' : 'none' }};" />
       @error('image')
           <span class="text-danger">{{ $message }}</span>
       @enderror
@@ -58,7 +47,7 @@ enctype="multipart/form-data">
 </div>
 
 <button type="submit" class="btn btn-success pull-right">
-  {{ isset($category) ? 'Cập nhật danh mục' : 'Thêm danh mục' }}
+  {{ isset($slides) ? 'Cập nhật danh mục' : 'Thêm danh mục' }}
 </button>
 </form>
                                     

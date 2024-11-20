@@ -26,20 +26,18 @@ class AdminServiceCategory extends Controller
     public function store(CategoryRequest $request)
     {
         // Create a new category
-        $category = new ServiceCategory();
-        $category->name = $request->name;
-        $category->slug = $request->slug ?: Str::slug($request->name); // Generate slug if not provided
-
+        $data = $request->all();
         // Handle image upload
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('images/categories'), $filename);
-            $category->image = $filename;
+            $data['image'] = $filename;
         }
 
-        $category->save();
-        return back();
+        ServiceCategory::create($data);
+        return redirect()->route('admin.service_categories')->with('success', 'Danh mục đã được tạo thành công');
+      
        // return redirect()->route('admin.service_categories')->with('success', 'Danh mục đã được thêm thành công!');
     }
 
@@ -56,18 +54,17 @@ class AdminServiceCategory extends Controller
         $category = ServiceCategory::where('slug', $slug)->firstOrFail(); // Find by slug
 
         // Update the category
-        $category->name = $request->name;
-        $category->slug = $request->slug ?: Str::slug($request->name); // Generate slug if not provided
+        $data = $request->all();
 
         // Handle image upload if a new one is provided
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('images/categories'), $filename);
-            $category->image = $filename;
+            $data['image'] = $filename;
         }
 
-        $category->save();
+        $category->update($data);
 
         return redirect()->route('admin.service_categories')->with('success', 'Danh mục đã được cập nhật thành công!');
     }

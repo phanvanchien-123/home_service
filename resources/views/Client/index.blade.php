@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <div class="portfolioContainer" style="margin-top: -50px;">
-                    @foreach ($featured as $item)
+                    @foreach ($featured_category as $item)
                     <div class="col-xs-6 col-sm-4 col-md-3 hsgrids"
                     style="padding-right: 5px;padding-left: 5px;">
                     <a class="g-list" href="{{ route('show.details_service',$item->slug) }}">
@@ -109,78 +109,17 @@
                     </div>
                     <div class="col-md-8">
                         <ul class="services-lines">
+                            @foreach ($featured_service as $item)
                             <li>
-                                <a href="servicesbycategory/1.html">
+                                <a href="{{ route('home.serviecs_by_category',$item->slug) }}">
                                     <div class="item-service-line">
                                         <i class="fa"><img class="icon-img"
-                                                src="{{asset('images/sercat/service-icon.png')}}"></i>
-                                        <h5>AC</h5>
+                                                src="{{asset('images/categories/'.$item->image)}}"></i>
+                                        <h5>{{ $item->name }}</h5>
                                     </div>
                                 </a>
                             </li>
-                            <li>
-                                <a href="servicesbycategory/3.html">
-                                    <div class="item-service-line">
-                                        <i class="fa"><img class="icon-img"
-                                                src="{{asset('images/sercat/service-icon.png')}}"></i>
-                                        <h5>Plumbing</h5>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="servicesbycategory/4.html">
-                                    <div class="item-service-line">
-                                        <i class="fa"><img class="icon-img"
-                                                src="{{asset('images/sercat/service-icon.png')}}"></i>
-                                        <h5>Electrical</h5>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="servicesbycategory/6.html">
-                                    <div class="item-service-line">
-                                        <i class="fa"><img class="icon-img"
-                                                src="{{asset('images/sercat/service-icon.png')}}"></i>
-                                        <h5>Home Cleaning</h5>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="servicesbycategory/8.html">
-                                    <div class="item-service-line">
-                                        <i class="fa"><img class="icon-img"
-                                                src="{{asset('images/sercat/service-icon.png')}}"></i>
-                                        <h5>Pest Control</h5>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="servicesbycategory/11.html">
-                                    <div class="item-service-line">
-                                        <i class="fa"><img class="icon-img"
-                                                src="{{asset('images/sercat/service-icon.png')}}"></i>
-                                        <h5>Computer Repair</h5>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="servicesbycategory/12.html">
-                                    <div class="item-service-line">
-                                        <i class="fa"><img class="icon-img"
-                                                src="{{asset('images/sercat/service-icon.png')}}"></i>
-                                        <h5>TV</h5>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="servicesbycategory/13.html">
-                                    <div class="item-service-line">
-                                        <i class="fa"><img class="icon-img"
-                                                src="{{asset('images/sercat/service-icon.png')}}"></i>
-                                        <h5>Refrigerator</h5>
-                                    </div>
-                                </a>
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

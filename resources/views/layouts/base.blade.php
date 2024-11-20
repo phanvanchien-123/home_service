@@ -57,7 +57,7 @@
 
                 <ul class="collapse">
                     <li class="title">
-                        <a href=""><img src="{{asset('images/logo.png')}}"></a>
+                        <a href="/"><img src="{{asset('images/logo.png')}}"></a>
                     </li>
                     <li> <a href="{{ route('home.service_categories') }}">Tất cả các dịch vụ  </a></li>
                     <li> <a href="javascript:void(0);">Air Conditioners</a>
@@ -134,6 +134,7 @@
                             @endauth</a>
                                 <ul class="drop-down one-column hover-fade">
                                     <li><a href="{{ route('admin.dashboard') }}">My Account (Admin)</a></li>
+                                    <li><a href="{{ route('admin.slides.index') }}">Slide</a></li>
                                     <li><a href="{{ route('admin.service_categories') }}">Các Danh Mục  </a></li>
                                     <li><a href="{{ route('admin.services.index') }}">Các Dịch Vụ  </a></li>
 

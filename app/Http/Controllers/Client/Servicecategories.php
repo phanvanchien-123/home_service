@@ -10,7 +10,7 @@ class Servicecategories extends Controller
 {
    public function index(){
     $categories = ServiceCategory::all();
-    dd($categories);
+   
     return view('Client.Category',compact('categories'));
    } 
 }
